@@ -10,6 +10,9 @@ function App() {
   return (
     <div className="App">
       <div className="contacts">
+        <div className="add-contact">
+          <button id="add-contact">Add contact</button>
+        </div>
         {contactData.map((contact) => {
           return (
             <Contact name={contact.name} phoneNumber={contact.phoneNumber} />

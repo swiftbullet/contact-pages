@@ -1,0 +1,17 @@
+.contact {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.contact__manage {
+  display: flex;
+}
+
+.contact__manage button {
+  width: 70px;
+  margin: 0 15px;
+  background: transparent;
+  border: black solid 1px;
+  cursor: pointer;
+}
