@@ -1,0 +1,19 @@
+.App {
+  display: flex;
+  justify-content: center;
+}
+
+.contacts {
+  margin: 15px 0;
+  width: 70%;
+}
+
+.add-contact {
+  margin: 15px 20px;
+}
+
+.add-contact button {
+  background: transparent;
+  border: black solid 1px;
+  cursor: pointer;
+}
