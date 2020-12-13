@@ -1,23 +1,38 @@
-import Contact from "./components/Contact";
+import { useState, useEffect } from "react";
+// import Contact from "./components/Contact";
 
 import "./App.css";
-
-const contact = { name: "Alex Sharp", phoneNumber: "000-001-943" };
-
-const contactData = [contact, contact, contact];
+import Contact from "./components/Contact/Contact";
 
 function App() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/contacts")
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  }, []);
+
   return (
     <div className="App">
       <div className="contacts">
         <div className="add-contact">
-          <button id="add-contact">Add contact</button>
+          <button id="add-contact" onClick={() => 0}>
+            Add contact
+          </button>
         </div>
-        {contactData.map((contact) => {
-          return (
-            <Contact name={contact.name} phoneNumber={contact.phoneNumber} />
-          );
-        })}
+        <div className="contacts__list">
+          {data.map((contact) => {
+            console.log("contact " + contact.id + " " + contact.name);
+            return (
+              <Contact
+                key={contact.id}
+                name={contact.name}
+                phoneNumber={contact.phoneNumber}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
