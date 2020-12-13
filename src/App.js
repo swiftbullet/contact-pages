@@ -36,6 +36,11 @@ function App() {
           </button>
         </div>
         <div className="contacts__list">
+          <li className="contact">
+            <div className="contact__name">Full name</div>
+            <div className="contact__phone-number">Phone number</div>
+            <div className="contact__manage">Actions</div>
+          </li>
           {contacts.map((contact) => {
             return (
               <Contact

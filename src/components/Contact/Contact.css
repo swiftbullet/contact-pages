@@ -1,16 +1,26 @@
 .contact {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-between;
-  padding: 10px;
+  padding: 10px 0;
+  padding-left: 15px;
+  transition: 0.1s;
+}
+
+.contact:not(:first-child):hover {
+  background: #eceff4;
 }
 
 .contact__manage {
   display: flex;
+  justify-content: start;
 }
 
 .contact__manage button {
   width: 70px;
-  margin: 0 15px;
+  margin: 0 10px;
+  margin-left: 0;
+  padding: 0 10px;
   background: transparent;
   border: black solid 1px;
   cursor: pointer;

@@ -8,30 +8,25 @@
   width: 70%;
 }
 
+.contact:first-child {
+  font-weight: 700;
+  border-bottom: steelblue solid 1px;
+}
+
 .add-contact {
-  margin: 15px 20px;
+  margin: 15px 0;
 }
 
 .add-contact button {
+  padding: 10px 10px;
   background: transparent;
   border: black solid 1px;
+  transition: 0.5s;
   cursor: pointer;
 }
 
-.contact {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-}
-
-.contact__manage {
-  display: flex;
-}
-
-.contact__manage button {
-  width: 70px;
-  margin: 0 15px;
-  background: transparent;
-  border: black solid 1px;
-  cursor: pointer;
+.add-contact button:hover {
+  background: salmon;
+  color: white;
+  border: salmon solid 1px;
 }
