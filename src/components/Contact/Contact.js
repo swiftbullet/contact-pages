@@ -12,7 +12,14 @@ const Contact = (props) => {
           <button id="edit-contact">Edit</button>
         </div>
         <div className="delete-contact">
-          <button id="delete-contact" onClick={() => 0}>
+          <button
+            id="delete-contact"
+            onClick={() => {
+              fetch(`http://localhost:3000/contacts/${props.id}`, {
+                method: "DELETE",
+              });
+            }}
+          >
             Delete
           </button>
         </div>

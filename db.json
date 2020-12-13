@@ -1,12 +1,54 @@
 {
   "contacts": [
-    { "id": "01", "name": "Alex Sharp", "phoneNumber": "030-045-943" },
-    { "id": "02", "name": "Joe Smith", "phoneNumber": "153-231-300" },
-    { "id": "03", "name": "Katarina Schneider", "phoneNumber": "000-345-105" },
-    { "id": "04", "name": "Grzegorz Malinovski", "phoneNumber": "433-032-050" },
-    { "id": "05", "name": "Li Zichen", "phoneNumber": "043-451-673" },
-    { "id": "06", "name": "Mikhail Rogov", "phoneNumber": "560-321-954" },
-    { "id": "07", "name": "Leon Gakumba", "phoneNumber": "020-161-567" },
-    { "id": "08", "name": "Francois Chollet", "phoneNumber": "320-501-299" }
+    {
+      "id": "01",
+      "name": "Alex Sharp",
+      "phoneNumber": "030-045-943"
+    },
+    {
+      "id": "02",
+      "name": "Joe Smith",
+      "phoneNumber": "153-231-300"
+    },
+    {
+      "id": "03",
+      "name": "Katarina Schneider",
+      "phoneNumber": "000-345-105"
+    },
+    {
+      "id": "04",
+      "name": "Grzegorz Malinovski",
+      "phoneNumber": "433-032-050"
+    },
+    {
+      "id": "05",
+      "name": "Li Zichen",
+      "phoneNumber": "043-451-673"
+    },
+    {
+      "id": "06",
+      "name": "Mikhail Rogov",
+      "phoneNumber": "560-321-954"
+    },
+    {
+      "id": "07",
+      "name": "Leon Gakumba",
+      "phoneNumber": "020-161-567"
+    },
+    {
+      "id": "08",
+      "name": "Francois Chollet",
+      "phoneNumber": "320-501-299"
+    },
+    {
+      "id": "10",
+      "name": "Alex Sharp",
+      "phoneNumber": "030-045-943"
+    },
+    {
+      "id": "11",
+      "name": "Alex Sharp",
+      "phoneNumber": "030-045-943"
+    }
   ]
 }
