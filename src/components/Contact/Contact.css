@@ -13,7 +13,7 @@
 
 .contact__manage {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .contact__manage button {

@@ -3,35 +3,62 @@ import Contact from "./components/Contact/Contact";
 
 import "./App.css";
 
+const API_URL = "http://localhost:3000/contacts";
+
 function App() {
+  const [alert, setAlert] = useState(false);
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/contacts")
-      .then((res) => res.json())
-      .then((data) => setContacts(data));
-  }, [contacts.length]);
+    if (alert) {
+      setTimeout(() => {
+        setAlert(false);
+      }, 0);
+    }
+  });
+
+  useEffect(() => {
+    let mounted = true;
+    if (contacts.length && !alert) {
+      return;
+    }
+
+    const loadData = async () => {
+      const response = await fetch(API_URL);
+      const data = await response.json();
+      if (mounted) {
+        setContacts(data);
+      }
+    };
+
+    loadData();
+  }, [contacts, alert]);
+
+  const maxId = Math.max(...contacts.map(contact => contact.id), 0)
+  console.log(maxId);
+
+  const fetchData = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: maxId + 1,
+      name: "Alex Sharp",
+      phoneNumber: "030-045-943",
+    }),
+  };
+
+  const sendData = () => {
+    fetch("http://localhost:3000/contacts", fetchData);
+    setAlert(true)
+  };
 
   return (
     <div className="App">
       <div className="contacts">
         <div className="add-contact">
-          <button
-            id="add-contact"
-            onClick={() =>
-              fetch("http://localhost:3000/contacts", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  id: "13",
-                  name: "Alex Sharp",
-                  phoneNumber: "030-045-943",
-                }),
-              })
-            }
-          >
+          <button id="add-contact" onClick={sendData}>
             Add contact
           </button>
         </div>
@@ -48,6 +75,7 @@ function App() {
                 id={contact.id}
                 name={contact.name}
                 phoneNumber={contact.phoneNumber}
+                setAlert={setAlert}
               />
             );
           })}

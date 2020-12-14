@@ -18,6 +18,7 @@ const Contact = (props) => {
               fetch(`http://localhost:3000/contacts/${props.id}`, {
                 method: "DELETE",
               });
+              props.setAlert(true);
             }}
           >
             Delete
