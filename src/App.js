@@ -35,7 +35,6 @@ function App() {
   }, [contacts, alert]);
 
   const maxId = Math.max(...contacts.map(contact => contact.id), 0)
-  console.log(maxId);
 
   const fetchData = {
     method: "POST",
@@ -49,7 +48,7 @@ function App() {
     }),
   };
 
-  const sendData = () => {
+  const addItem = () => {
     fetch("http://localhost:3000/contacts", fetchData);
     setAlert(true)
   };
@@ -58,7 +57,7 @@ function App() {
     <div className="App">
       <div className="contacts">
         <div className="add-contact">
-          <button id="add-contact" onClick={sendData}>
+          <button id="add-contact" onClick={addItem}>
             Add contact
           </button>
         </div>
@@ -76,6 +75,7 @@ function App() {
                 name={contact.name}
                 phoneNumber={contact.phoneNumber}
                 setAlert={setAlert}
+                setContacts={setContacts}
               />
             );
           })}

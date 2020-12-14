@@ -7,6 +7,11 @@
   transition: 0.1s;
 }
 
+.contact input {
+  background: transparent;
+  border: none;
+}
+
 .contact:not(:first-child):hover {
   background: #eceff4;
 }
