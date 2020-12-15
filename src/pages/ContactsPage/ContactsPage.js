@@ -77,6 +77,10 @@ const ContactsPage = ({ setIsAuthenticated }) => {
   };
 
   const handleEnter = (event) => (event.code === "Enter" ? addItem() : null);
+
+  const filterContacts = (contact) =>
+    contact.name.toLowerCase().search(searchQuery.trim().toLowerCase()) !== -1;
+
   return (
     <div className="contacts">
       <div className="logout">
@@ -139,12 +143,7 @@ const ContactsPage = ({ setIsAuthenticated }) => {
         </li>
         {[...contacts]
           .reverse()
-          .filter(
-            (contact) =>
-              !contact.name
-                .toLowerCase()
-                .search(searchQuery.trim().toLowerCase())
-          )
+          .filter(filterContacts)
           .map((contact) => {
             return (
               <Contact key={contact.id} contact={contact} setAlert={setAlert} />
