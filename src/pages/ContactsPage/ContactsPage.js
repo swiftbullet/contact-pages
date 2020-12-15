@@ -5,7 +5,7 @@ import "./ContactsPage.css";
 
 const API_URL = "http://localhost:3000/contacts";
 
-const ContactsPage = () => {
+const ContactsPage = ({ setIsAuthenticated }) => {
   const [alert, setAlert] = useState(false);
   const [contacts, setContacts] = useState([]);
   const [addContact, setAddContact] = useState({ name: "", phoneNumber: "" });
@@ -79,6 +79,9 @@ const ContactsPage = () => {
   const handleEnter = (event) => (event.code === "Enter" ? addItem() : null);
   return (
     <div className="contacts">
+      <div className="logout">
+        <button onClick={() => setIsAuthenticated(false)}>Logout</button>
+      </div>
       <div className="add-contact">
         <button id="add-contact" onClick={addItem}>
           Add contact
