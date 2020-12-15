@@ -9,12 +9,22 @@ const ContactsPage = () => {
   const [alert, setAlert] = useState(false);
   const [contacts, setContacts] = useState([]);
   const [addContact, setAddContact] = useState({ name: "", phoneNumber: "" });
+  const [emptyAddContact, setEmptyAddContact] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     if (alert) {
       setTimeout(() => {
         setAlert(false);
       }, 0);
+    }
+  });
+
+  useEffect(() => {
+    if (emptyAddContact) {
+      setTimeout(() => {
+        setEmptyAddContact(false);
+      }, 3000);
     }
   });
 
@@ -50,10 +60,16 @@ const ContactsPage = () => {
   };
 
   const addItem = () => {
-    fetch("http://localhost:3000/contacts", fetchData);
-    setAlert(true);
-    setAddContact({ name: "", phoneNumber: "" });
-    console.log("add item");
+    if (addContact.name.trim().length && addContact.phoneNumber.trim().length) {
+      console.log(addContact);
+      fetch("http://localhost:3000/contacts", fetchData);
+      setAlert(true);
+      setAddContact({ name: "", phoneNumber: "" });
+      console.log("add item");
+    } else {
+      setAddContact({ name: "", phoneNumber: "" });
+      setEmptyAddContact(true);
+    }
   };
 
   const handleChange = (event) => {
@@ -79,6 +95,11 @@ const ContactsPage = () => {
               onChange={handleChange}
               onKeyDown={handleEnter}
               value={addContact.name}
+              placeholder={
+                emptyAddContact && !addContact.name.trim()
+                  ? "Name required!"
+                  : null
+              }
             />
           </div>
           <div className="add-contact__column">
@@ -91,21 +112,41 @@ const ContactsPage = () => {
               onChange={handleChange}
               onKeyDown={handleEnter}
               value={addContact.phoneNumber}
+              placeholder={
+                emptyAddContact && !addContact.phoneNumber.trim()
+                  ? "Phone number required!"
+                  : null
+              }
             />
           </div>
         </div>
       </div>
+      <input
+        type="search"
+        name="search"
+        id="search"
+        onChange={(event) => setSearchQuery(event.target.value)}
+        value={searchQuery}
+      />
       <div className="contacts__list">
         <li className="contact">
           <div className="contact__name">Full name</div>
           <div className="contact__phone-number">Phone number</div>
           <div className="contact__manage">Actions</div>
         </li>
-        {[...contacts].reverse().map((contact) => {
-          return (
-            <Contact key={contact.id} contact={contact} setAlert={setAlert} />
-          );
-        })}
+        {[...contacts]
+          .reverse()
+          .filter(
+            (contact) =>
+              !contact.name
+                .toLowerCase()
+                .search(searchQuery.trim().toLowerCase())
+          )
+          .map((contact) => {
+            return (
+              <Contact key={contact.id} contact={contact} setAlert={setAlert} />
+            );
+          })}
       </div>
     </div>
   );
