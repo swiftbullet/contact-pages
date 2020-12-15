@@ -1,11 +1,6 @@
 {
   "contacts": [
     {
-      "id": 1,
-      "name": "Alex Sharp",
-      "phoneNumber": "030-045-943"
-    },
-    {
       "id": 2,
       "name": "Joe Smith",
       "phoneNumber": "153-231-300"
