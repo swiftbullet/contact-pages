@@ -1,30 +1,40 @@
-import React from "react";
+import { useState } from "react";
 
 import "./Contact.css";
 
-const Contact = (props) => {
+const Contact = ({ contact, setAlert }) => {
+  const [contactData, setContactData] = useState(contact);
+
   const deleteItem = () => {
-    fetch(`http://localhost:3000/contacts/${props.id}`, {
+    fetch(`http://localhost:3000/contacts/${contact.id}`, {
       method: "DELETE",
     });
-    props.setAlert(true);
+    setAlert(true);
+  };
+
+  const handleChange = (event) => {
+    setContactData({ [event.target.name]: event.target.value });
+    console.log(contactData);
   };
 
   return (
-    <li key={props.id} className="contact">
+    <li key={contact.id} className="contact">
       <input
         className="contact__name"
         type="text"
         name="name"
         id="name"
-        value={props.name}
+        onChange={handleChange}
+        value={contactData.name || ""}
+        autoComplete="off"
       />
       <input
         className="contact__phone-number"
         type="tel"
-        name="phone-number"
+        name="phoneNumber"
         id="phone-number"
-        value={props.phoneNumber}
+        onChange={handleChange}
+        value={contactData.phoneNumber || ""}
       />
       <div className="contact__manage">
         <div className="edit-contact">

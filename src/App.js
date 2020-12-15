@@ -53,6 +53,8 @@ function App() {
     setAlert(true)
   };
 
+  // console.log(contacts)
+
   return (
     <div className="App">
       <div className="contacts">
@@ -68,14 +70,12 @@ function App() {
             <div className="contact__manage">Actions</div>
           </li>
           {contacts.map((contact) => {
+            // console.log(contact)
             return (
               <Contact
                 key={contact.id}
-                id={contact.id}
-                name={contact.name}
-                phoneNumber={contact.phoneNumber}
+                contact={contact}
                 setAlert={setAlert}
-                setContacts={setContacts}
               />
             );
           })}
