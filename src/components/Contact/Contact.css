@@ -30,3 +30,21 @@
   border: black solid 1px;
   cursor: pointer;
 }
+
+#delete-contact:hover {
+  background: tomato;
+  border: tomato solid 1px;
+  color: white;
+}
+
+#confirm-delete:hover {
+  background: tomato;
+  border: tomato solid 1px;
+  color: white;
+}
+
+#cancel-delete:hover {
+  background: skyblue;
+  border: skyblue solid 1px;
+  color: white;
+}

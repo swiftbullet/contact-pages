@@ -8,6 +8,7 @@ const API_URL = "http://localhost:3000/contacts";
 function App() {
   const [alert, setAlert] = useState(false);
   const [contacts, setContacts] = useState([]);
+  const [addContact, setAddContact] = useState({ name: "", phoneNumber: "" });
 
   useEffect(() => {
     if (alert) {
@@ -31,7 +32,7 @@ function App() {
       }
     };
 
-    loadData();
+    loadData({ name: "", phoneNumber: "" });
   }, [contacts, alert]);
 
   const maxId = Math.max(...contacts.map((contact) => contact.id), 0);
@@ -43,15 +44,23 @@ function App() {
     },
     body: JSON.stringify({
       id: maxId + 1,
-      name: "Alex Sharp",
-      phoneNumber: "030-045-943",
+      name: addContact.name,
+      phoneNumber: addContact.phoneNumber,
     }),
   };
 
   const addItem = () => {
     fetch("http://localhost:3000/contacts", fetchData);
     setAlert(true);
+    setAddContact({ name: "", phoneNumber: "" });
+    console.log("add item")
   };
+
+  const handleChange = (event) => {
+    setAddContact({ ...addContact, [event.target.name]: event.target.value });
+  };
+
+  const handleEnter = (event) => (event.code === "Enter" ? addItem() : null);
 
   return (
     <div className="App">
@@ -60,6 +69,33 @@ function App() {
           <button id="add-contact" onClick={addItem}>
             Add contact
           </button>
+          <div className="add-contact__data">
+            <div className="add-contact__column">
+              <div className="add-contact__title">Full name</div>
+              <input
+                className="add-contact__input"
+                type="text"
+                name="name"
+                id="name"
+                autoComplete="off"
+                onChange={handleChange}
+                onKeyDown={handleEnter}
+                value={addContact.name}
+              />
+            </div>
+            <div className="add-contact__column">
+              <div className="add-contact__title">Phone number</div>
+              <input
+                className="add-contact__input"
+                type="tel"
+                name="phoneNumber"
+                id="phone-number"
+                onChange={handleChange}
+                onKeyDown={handleEnter}
+                value={addContact.phoneNumber}
+              />
+            </div>
+          </div>
         </div>
         <div className="contacts__list">
           <li className="contact">
