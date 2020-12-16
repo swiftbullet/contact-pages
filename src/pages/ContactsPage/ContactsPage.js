@@ -5,7 +5,7 @@ import "./ContactsPage.css";
 
 const API_URL = "http://localhost:3000/contacts";
 
-const ContactsPage = ({ setIsAuthenticated }) => {
+const ContactsPage = ({ logout }) => {
   const [alert, setAlert] = useState(false);
   const [contacts, setContacts] = useState([]);
   const [addContact, setAddContact] = useState({ name: "", phoneNumber: "" });
@@ -84,7 +84,7 @@ const ContactsPage = ({ setIsAuthenticated }) => {
   return (
     <div className="contacts">
       <div className="logout">
-        <button onClick={() => setIsAuthenticated(false)}>Logout</button>
+        <button onClick={() => logout()}>Logout</button>
       </div>
       <div className="add-contact">
         <button id="add-contact" onClick={addItem}>
@@ -134,6 +134,8 @@ const ContactsPage = ({ setIsAuthenticated }) => {
         id="search"
         onChange={(event) => setSearchQuery(event.target.value)}
         value={searchQuery}
+        placeholder="Search"
+        autoComplete="off"
       />
       <div className="contacts__list">
         <li className="contact">

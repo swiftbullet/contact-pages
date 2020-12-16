@@ -2,27 +2,16 @@ import React, { useState } from "react";
 
 import "./AuthPage.css";
 
-const AuthPage = ({ setIsAuthenticated }) => {
+const AuthPage = ({ login }) => {
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [authData, setAuthData] = useState({
-    name: "",
+    // name: "",
     email: "",
     password: "",
   });
 
   const handleChange = (event) => {
     setAuthData({ ...authData, [event.target.name]: event.target.value });
-  };
-
-  const fetchData = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: authData.name,
-      password: authData.password,
-    }),
   };
 
   const myHeaders = new Headers();
@@ -41,39 +30,43 @@ const AuthPage = ({ setIsAuthenticated }) => {
     redirect: "follow",
   };
 
-  const handleLogin = (event) => {
+  const handleLogin = () => {
     fetch("http://localhost:3000/login", requestOptions)
       .then((response) => response.json())
       .then((token) => {
         if (token) {
-          setIsAuthenticated(true);
+          console.log(token.accessToken)
+          login(token.accessToken);
         }
       });
   };
 
-  const handleSignup = (event) => {
-    fetch("http://localhost:3000/register", fetchData).then((response) =>
-      console.log(response)
-    );
+  const handleSignup = () => {
+    fetch("http://localhost:3000/register", requestOptions)
+      .then((response) => response.json())
+      .then((token) => {
+        if (token) {
+          login(token.accessToken)
+        }
+      });
   };
 
   return (
     <div className="Auth">
-      <button onClick={() => setIsAuthenticated(true)}>Login</button>
       <div className="auth-title">Authentication</div>
       <div className="login-signup">
         {isLoginForm ? (
           <div className="login">
             <form method="post">
-              <label htmlFor="name">Name</label>
+              <label htmlFor="email">Email</label>
               <input
                 className="text-input"
                 type="text"
-                name="name"
-                id="name"
+                name="email"
+                id="email"
                 autoComplete="off"
                 onChange={handleChange}
-                value={authData.name}
+                value={authData.email}
               />
               <label htmlFor="password">Password</label>
               <input
@@ -92,7 +85,7 @@ const AuthPage = ({ setIsAuthenticated }) => {
         ) : (
           <div className="signup">
             <form method="post">
-              <label htmlFor="">Name</label>
+              {/* <label htmlFor="">Name</label>
               <input
                 className="text-input"
                 type="text"
@@ -101,7 +94,7 @@ const AuthPage = ({ setIsAuthenticated }) => {
                 autoComplete="off"
                 onChange={handleChange}
                 value={authData.name}
-              />
+              /> */}
               <label htmlFor="">Email</label>
               <input
                 className="text-input"

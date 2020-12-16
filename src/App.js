@@ -1,17 +1,19 @@
-import { useState } from "react";
 import ContactPage from "./pages/ContactsPage";
 import AuthPage from "./pages/AuthPage";
+import useAuth from "./hooks/useAuth";
 
 import "./App.css";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { login, logout, token } = useAuth();
+  let isAuthenticated = !!token;
+  console.log(isAuthenticated)
   return (
     <div className="App">
       {isAuthenticated ? (
-        <ContactPage setIsAuthenticated={setIsAuthenticated} />
+        <ContactPage logout={logout} />
       ) : (
-        <AuthPage setIsAuthenticated={setIsAuthenticated} />
+        <AuthPage login={login} />
       )}
     </div>
   );

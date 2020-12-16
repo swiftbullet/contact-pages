@@ -1,53 +1,82 @@
+.logout {
+  position: absolute;
+  right: 50px;
+}
+
+.logout button {
+  padding: 10px 15px;
+  background: transparent;
+  border: black solid 1px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.logout button:hover {
+  background: salmon;
+  color: white;
+  border: salmon solid 1px;
+}
+
 .contacts {
-    margin: 15px 0;
-    width: 70%;
-  }
-  
-  .contact:first-child {
-    font-weight: 700;
-    border-bottom: steelblue solid 1px;
-  }
-  
-  .add-contact {
-    margin: 15px 0;
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .add-contact button {
-    padding: 10px 10px;
-    background: transparent;
-    border: black solid 1px;
-    transition: 0.5s;
-    cursor: pointer;
-  }
-  
-  .add-contact button:hover {
-    background: salmon;
-    color: white;
-    border: salmon solid 1px;
-  }
-  
-  .add-contact__data {
-    padding-left: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  
-  .add-contact__column {
-    margin-right: 20px;
-  }
-  
-  .add-contact__title {
-    font-size: 0.87rem;
-  }
-  
-  .add-contact__input {
-    border: none;
-    border-bottom: gainsboro solid 1px;
-  }
-  
-  .add-contact__input:focus {
-    border-bottom: darkslateblue solid 1px;
-  }
-  
+  margin: 15px 0;
+  width: 70%;
+}
+
+.contact:first-child {
+  font-weight: 700;
+  border-bottom: steelblue solid 1px;
+}
+
+.add-contact {
+  margin: 15px 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.add-contact button {
+  padding: 10px 10px;
+  background: transparent;
+  border: black solid 1px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.add-contact button:hover {
+  background: salmon;
+  color: white;
+  border: salmon solid 1px;
+}
+
+.add-contact__data {
+  padding-left: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.add-contact__column {
+  margin-right: 20px;
+}
+
+.add-contact__title {
+  font-size: 0.87rem;
+}
+
+.add-contact__input {
+  border: none;
+  border-bottom: gainsboro solid 1px;
+  outline: none;
+}
+
+.add-contact__input:focus {
+  border-bottom: darkslateblue solid 1px;
+}
+
+#search {
+  border: none;
+  border-bottom: gainsboro solid 1px;
+  outline: none;
+}
+
+#search:focus {
+  border-bottom: darkslateblue solid 1px;
+}
