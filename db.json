@@ -49,6 +49,18 @@
       "id": 11,
       "name": "Alex Jones",
       "phoneNumber": "323-434-765"
+    },
+    {
+      "id": 12,
+      "name": "Alex Alex",
+      "phoneNumber": "323-564-765"
+    }
+  ],
+  "users": [
+    {
+      "email": "user@gmail.com",
+      "password": "$2a$10$AyHJO5YcT9FNUQsiD1hwz.1qUKF2K5JIiJnDfx1HWHoacv8OBj4pS",
+      "id": 1
     }
   ]
 }
