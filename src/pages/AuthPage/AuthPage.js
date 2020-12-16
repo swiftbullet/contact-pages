@@ -5,7 +5,6 @@ import "./AuthPage.css";
 const AuthPage = ({ login }) => {
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [authData, setAuthData] = useState({
-    // name: "",
     email: "",
     password: "",
   });
@@ -15,13 +14,11 @@ const AuthPage = ({ login }) => {
   };
 
   const myHeaders = new Headers();
-  myHeaders.append("email", "user@gmail.com");
-  myHeaders.append("password", "123456");
-  myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+  myHeaders.append("email", authData.email);
 
   const urlencoded = new URLSearchParams();
-  urlencoded.append("email", "user@gmail.com");
-  urlencoded.append("password", "123456");
+  urlencoded.append("email", authData.email);
+  urlencoded.append("password", authData.password);
 
   const requestOptions = {
     method: "POST",
@@ -35,7 +32,6 @@ const AuthPage = ({ login }) => {
       .then((response) => response.json())
       .then((token) => {
         if (token) {
-          console.log(token.accessToken)
           login(token.accessToken);
         }
       });
@@ -46,7 +42,7 @@ const AuthPage = ({ login }) => {
       .then((response) => response.json())
       .then((token) => {
         if (token) {
-          login(token.accessToken)
+          login(token.accessToken);
         }
       });
   };
@@ -85,16 +81,6 @@ const AuthPage = ({ login }) => {
         ) : (
           <div className="signup">
             <form method="post">
-              {/* <label htmlFor="">Name</label>
-              <input
-                className="text-input"
-                type="text"
-                name="name"
-                id="name"
-                autoComplete="off"
-                onChange={handleChange}
-                value={authData.name}
-              /> */}
               <label htmlFor="">Email</label>
               <input
                 className="text-input"
