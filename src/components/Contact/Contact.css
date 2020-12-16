@@ -10,6 +10,7 @@
 .contact input {
   background: transparent;
   border: none;
+  outline: none;
 }
 
 .contact:not(:first-child):hover {
