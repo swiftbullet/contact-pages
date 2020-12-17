@@ -61,11 +61,9 @@ const ContactsPage = ({ logout }) => {
 
   const addItem = () => {
     if (addContact.name.trim().length && addContact.phoneNumber.trim().length) {
-      console.log(addContact);
       fetch("http://localhost:3000/contacts", fetchData);
       setAlert(true);
       setAddContact({ name: "", phoneNumber: "" });
-      console.log("add item");
     } else {
       setAddContact({ name: "", phoneNumber: "" });
       setEmptyAddContact(true);

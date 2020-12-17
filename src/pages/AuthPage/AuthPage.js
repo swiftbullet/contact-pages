@@ -8,7 +8,7 @@ const SIGNUP_ROUTE = BASE_URL + "/register";
 
 const AuthPage = ({ login }) => {
   const [isLoginForm, setIsLoginForm] = useState(true);
-  const [errorMessage, setErrorMessage] = useState(" ");
+  const [errorMessage, setErrorMessage] = useState("");
   const [authData, setAuthData] = useState({
     email: "",
     password: "",
@@ -49,7 +49,6 @@ const AuthPage = ({ login }) => {
       .catch((error) => {
         error.text().then((errorMessage) => {
           setErrorMessage(errorMessage);
-          console.log(errorMessage);
         });
       });
   };
@@ -97,7 +96,7 @@ const AuthPage = ({ login }) => {
         ) : (
           <div className="signup">
             <form method="post">
-              <label htmlFor="">Email</label>
+              <label htmlFor="email">Email</label>
               <input
                 className="text-input"
                 type="email"
@@ -106,7 +105,7 @@ const AuthPage = ({ login }) => {
                 onChange={handleChange}
                 value={authData.email}
               />
-              <label htmlFor="">Password</label>
+              <label htmlFor="password">Password</label>
               <input
                 className="text-input"
                 type="password"

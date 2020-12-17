@@ -5,7 +5,6 @@ import "./Contact.css";
 const Contact = ({ contact, setAlert }) => {
   const [contactData, setContactData] = useState(contact);
   const [choiceDelete, setChoiceDelete] = useState(false);
-  // const [choiceEdit, setChoiceEdit] = useState(false);
 
   const deleteItem = () => {
     fetch(`http://localhost:3000/contacts/${contact.id}`, {
