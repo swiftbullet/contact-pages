@@ -2,19 +2,21 @@ import { useState } from "react";
 
 import "./Contact.css";
 
+import { CONTACTS_URL } from "./../../routes";
+
 const Contact = ({ contact, setAlert }) => {
   const [contactData, setContactData] = useState(contact);
   const [choiceDelete, setChoiceDelete] = useState(false);
 
   const deleteItem = () => {
-    fetch(`http://localhost:3000/contacts/${contact.id}`, {
+    fetch(CONTACTS_URL + "/" + contact.id, {
       method: "DELETE",
     });
     setAlert(true);
   };
 
   const updateItem = () => {
-    fetch(`http://localhost:3000/contacts/${contact.id}`, {
+    fetch(CONTACTS_URL + "/" + contact.id, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

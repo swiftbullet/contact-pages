@@ -2,9 +2,7 @@ import React, { useState } from "react";
 
 import "./AuthPage.css";
 
-const BASE_URL = "http://localhost:3000";
-const LOGIN_ROUTE = BASE_URL + "/login";
-const SIGNUP_ROUTE = BASE_URL + "/register";
+import { LOGIN_URL, SIGNUP_URL } from "./../../routes";
 
 const AuthPage = ({ login }) => {
   const [isLoginForm, setIsLoginForm] = useState(true);
@@ -54,11 +52,11 @@ const AuthPage = ({ login }) => {
   };
 
   const handleLogin = () => {
-    makeRequest(LOGIN_ROUTE, requestOptions);
+    makeRequest(LOGIN_URL, requestOptions);
   };
 
   const handleSignup = () => {
-    makeRequest(SIGNUP_ROUTE, requestOptions);
+    makeRequest(SIGNUP_URL, requestOptions);
   };
 
   return (

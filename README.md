@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+##
+json-server db.json -m ./node_modules/json-server-auth
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

@@ -3,7 +3,7 @@ import Contact from "./../../components/Contact";
 
 import "./ContactsPage.css";
 
-const API_URL = "http://localhost:3000/contacts";
+import { CONTACTS_URL } from "./../../routes";
 
 const ContactsPage = ({ logout }) => {
   const [alert, setAlert] = useState(false);
@@ -35,7 +35,7 @@ const ContactsPage = ({ logout }) => {
     }
 
     const loadData = async () => {
-      const response = await fetch(API_URL);
+      const response = await fetch(CONTACTS_URL);
       const data = await response.json();
       if (mounted) {
         setContacts(data);
@@ -61,7 +61,7 @@ const ContactsPage = ({ logout }) => {
 
   const addItem = () => {
     if (addContact.name.trim().length && addContact.phoneNumber.trim().length) {
-      fetch("http://localhost:3000/contacts", fetchData);
+      fetch(CONTACTS_URL, fetchData);
       setAlert(true);
       setAddContact({ name: "", phoneNumber: "" });
     } else {
