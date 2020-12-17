@@ -2,8 +2,13 @@ import React, { useState } from "react";
 
 import "./AuthPage.css";
 
+const BASE_URL = "http://localhost:3000";
+const LOGIN_ROUTE = BASE_URL + "/login";
+const SIGNUP_ROUTE = BASE_URL + "/register";
+
 const AuthPage = ({ login }) => {
   const [isLoginForm, setIsLoginForm] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(" ");
   const [authData, setAuthData] = useState({
     email: "",
     password: "",
@@ -13,38 +18,48 @@ const AuthPage = ({ login }) => {
     setAuthData({ ...authData, [event.target.name]: event.target.value });
   };
 
-  const myHeaders = new Headers();
-  myHeaders.append("email", authData.email);
+  const makeRequestOptions = (data, method) => {
+    const urlencoded = new URLSearchParams();
+    for (const item in data) {
+      urlencoded.append(item, data[item]);
+    }
 
-  const urlencoded = new URLSearchParams();
-  urlencoded.append("email", authData.email);
-  urlencoded.append("password", authData.password);
+    return {
+      method: method,
+      body: urlencoded,
+      redirect: "follow",
+    };
+  };
 
-  const requestOptions = {
-    method: "POST",
-    headers: myHeaders,
-    body: urlencoded,
-    redirect: "follow",
+  const requestOptions = makeRequestOptions(authData, "POST");
+
+  const makeRequest = (route, requestOptions) => {
+    fetch(route, requestOptions)
+      .then((response) => {
+        if (!response.ok) {
+          throw response;
+        }
+        return response.json();
+      })
+      .then((token) => {
+        if (token) {
+          login(token.accessToken);
+        }
+      })
+      .catch((error) => {
+        error.text().then((errorMessage) => {
+          setErrorMessage(errorMessage);
+          console.log(errorMessage);
+        });
+      });
   };
 
   const handleLogin = () => {
-    fetch("http://localhost:3000/login", requestOptions)
-      .then((response) => response.json())
-      .then((token) => {
-        if (token) {
-          login(token.accessToken);
-        }
-      });
+    makeRequest(LOGIN_ROUTE, requestOptions);
   };
 
   const handleSignup = () => {
-    fetch("http://localhost:3000/register", requestOptions)
-      .then((response) => response.json())
-      .then((token) => {
-        if (token) {
-          login(token.accessToken);
-        }
-      });
+    makeRequest(SIGNUP_ROUTE, requestOptions);
   };
 
   return (
@@ -73,6 +88,7 @@ const AuthPage = ({ login }) => {
                 onChange={handleChange}
                 value={authData.password}
               />
+              <div className="error-display">{errorMessage}</div>
               <div className="auth-button-wrapper">
                 <input type="button" value="Log In" onClick={handleLogin} />
               </div>

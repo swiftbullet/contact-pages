@@ -7,7 +7,6 @@ import "./App.css";
 function App() {
   const { login, logout, token } = useAuth();
   let isAuthenticated = !!token;
-  console.log(isAuthenticated)
   return (
     <div className="App">
       {isAuthenticated ? (
